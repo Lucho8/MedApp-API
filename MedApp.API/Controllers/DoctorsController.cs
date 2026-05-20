@@ -100,4 +100,20 @@ public class DoctorsController : ControllerBase
         }
     }
 
+    [HttpPost("{id}/insurance-plans")]
+    [Authorize(Roles = "Doctor")]
+    public async Task<IActionResult> AssignInsurancePlan(Guid id, [FromBody] Guid insurancePlanId)
+    {
+        try
+        {
+            await _mediator.Send(new AssignInsurancePlanCommand(id, insurancePlanId));
+            return Ok(new { message = "Obra social asignada correctamente." });
+        }
+        catch (AppException ex)
+        {
+            return StatusCode(ex.StatusCode, new { message = ex.Message });
+        }
+    }   
+
+
 }

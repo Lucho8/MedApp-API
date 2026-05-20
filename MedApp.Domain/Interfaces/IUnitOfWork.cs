@@ -20,5 +20,6 @@ public interface IUnitOfWork : IDisposable
     IRepository<AuditLog> AuditLogs { get; }
     IRepository<DoctorSpecialty> DoctorSpecialties { get; }
     IRepository<DoctorClinic> DoctorClinics { get; }
+    IRepository<DoctorInsurancePlan> DoctorInsurancePlans { get; }
     Task<int> SaveChangesAsync();
 }
